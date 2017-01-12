@@ -200,7 +200,7 @@ public final class SearchBoxParser {
         return space;
     }
 
-    private static int spaceTyper(int[] space){
+    public static int spaceTyper(int[] space){
         int spaceCounter=Integer.MAX_VALUE;
         int spaceType=0;
         for(int i=0;i<=space.length-1;++i){
@@ -212,7 +212,7 @@ public final class SearchBoxParser {
         return spaceType;
     }
 
-    private static int resultTyper(int spaceType){
+    public static int resultTyper(int spaceType){
         if (++spaceType==1)
             return 1;
         else return 2*(spaceType-1);
