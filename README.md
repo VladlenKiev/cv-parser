@@ -1,6 +1,5 @@
 How it works?
 -----------------------------
-![alt tag](https://raw.githubusercontent.com/VladlenKiev/cv-parser/blob/master/src/main/webapp/resources/pictures/parser%20flow.jpg)
 ![alt tag](https://github.com/VladlenKiev/cv-parser/blob/master/src/main/webapp/resources/pictures/parser%20flow.jpg)
 -----------------------------
 Project Name: CV-parser
