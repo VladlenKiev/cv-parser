@@ -51,6 +51,11 @@
 	border: 1px dashed #ddd;
 }
 
+.jpg-dz {
+	border: 1px dashed #ddd;
+	text-align: left;
+	font-size: x-large;
+}
 .file-dropzone.drag-over {
 	outline: LightGreen solid 4px;
 }
