@@ -17,6 +17,7 @@ public final class SearcherRegByPhTest {
         String result0 = seacrherRegByPhTest.findFileCountryCode("+38050");
         String result = seacrherRegByPhTest.findFileCountryCode("+38050");
 
+        assertEquals("resources/location/phone-codes.json", result0);
         assertEquals("resources/location/phone-codes.json", result);
 
     }
@@ -28,6 +29,18 @@ public final class SearcherRegByPhTest {
         String result0 = seacrherRegByPhTest.findFileCountryCode("+38050");
         String result = seacrherRegByPhTest.findFileCountryCode("+38050");
 
+        assertEquals("resources/location/phone-codes.json", result0);
+        assertEquals("resources/location/phone-codes.json", result);
+
+    }
+ @Test
+    public void testFindFileCountryCode1(){
+        SeacrherRegByPh seacrherRegByPhTest = new SeacrherRegByPh();
+
+        String result0 = seacrherRegByPhTest.findFileCountryCode("+38050");
+        String result = seacrherRegByPhTest.findFileCountryCode("+38050");
+
+        assertEquals("resources/location/phone-codes.json", result0);
         assertEquals("resources/location/phone-codes.json", result);
 
     }
