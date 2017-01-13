@@ -1,3 +1,8 @@
+How it works?
+-----------------------------
+![alt tag](https://raw.githubusercontent.com/VladlenKiev/cv-parser/blob/master/src/main/webapp/resources/pictures/parser%20flow.jpg)
+![alt tag](https://github.com/VladlenKiev/cv-parser/blob/master/src/main/webapp/resources/pictures/parser%20flow.jpg)
+-----------------------------
 Project Name: CV-parser
 
 Application: Web-based application for automatic resume parser and Structure analysis for object recognition: Contact (name, phone), experience, skills, language skills, education, and others.
