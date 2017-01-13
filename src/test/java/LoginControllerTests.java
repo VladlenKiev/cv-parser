@@ -1,5 +1,3 @@
-package cloud.molddata.parser.cv.testCases;
-
 import org.junit.Test;
 
 //import static org.junit.Assert.assertEquals;
