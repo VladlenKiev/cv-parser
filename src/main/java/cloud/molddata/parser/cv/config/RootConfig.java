@@ -66,10 +66,6 @@ public class RootConfig {
         dataSource.setUrl(jdbcUrl);
         dataSource.setUsername(user);
         dataSource.setPassword(password);
-        //dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        //dataSource.setUrl("jdbc:mysql://localhost:3306/dropzone_test?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;autoReconnect=true\n");
-        //dataSource.setUsername("root");
-        //dataSource.setPassword("root");
         return dataSource;
     }
 
