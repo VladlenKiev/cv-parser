@@ -222,9 +222,9 @@ public class FileUploadController {
   }
 
   private String getDestinationLocation() {
-    return "C:/uploaded-files/";
+    //return "C:/uploaded-files/";
     //return "resources/uploaded/";
-    //return "/opt/tomcat/temp/uploaded/";
+    return "/opt/tomcat/temp/uploaded/";
   }
 
   //show info in dialog after btn-parsed

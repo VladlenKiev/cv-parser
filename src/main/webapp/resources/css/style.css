@@ -56,6 +56,12 @@
 	text-align: left;
 	font-size: x-large;
 }
+.poweredBy {
+	border: 1px dashed #ddd;
+	text-align: left;
+	font-size: small;
+	color: #28a4c9;
+}
 .file-dropzone.drag-over {
 	outline: LightGreen solid 4px;
 }
