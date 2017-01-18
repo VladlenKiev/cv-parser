@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Analyzer {
+    //------------------------------------
     private static String skills_block;
     private static String experience_block;
     private static String education_block;
