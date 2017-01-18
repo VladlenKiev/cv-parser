@@ -1,5 +1,5 @@
-import np.com.mshrestha.dropzonetest.controller.FileUploadController;
-import np.com.mshrestha.dropzonetest.controller.LoginController;
+import cloud.molddata.parser.cv.controller.FileUploadController;
+import cloud.molddata.parser.cv.controller.LoginController;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.web.servlet.ModelAndView;

@@ -418,7 +418,7 @@ public class WordsContent {
     static {
         fCOMMON_WORDS_LANGUAGE.add(".*\\blanguage(.?|s)\\b.*");
         fCOMMON_WORDS_LANGUAGE.add(".*\\brus.*\\b.*");
-        fCOMMON_WORDS_LANGUAGE.add(".*\\bukr.*\\b.*");
+        fCOMMON_WORDS_LANGUAGE.add(".*\\bukrain.*\\b.*");
         fCOMMON_WORDS_LANGUAGE.add(".*\\bdutch.*\\b.*");
         fCOMMON_WORDS_LANGUAGE.add(".*\\beng.*\\b.*");
         fCOMMON_WORDS_LANGUAGE.add(".*\\bfra.*\\b.*");

@@ -34,7 +34,7 @@ public class SeacrherRegByPh {
         return new String[]{(resultNone[0] = requestPhone),(resultNone[1] = "unknown"),(resultNone[2] = "unknown")};
     }
 
-    private String findFileCountryCode(String requestPhone){
+    public String findFileCountryCode(String requestPhone){
         String path;
         if (!requestPhone.matches("\\+\\d+")){
             requestPhone="+"+requestPhone;

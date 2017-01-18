@@ -36,13 +36,13 @@ class BlockTest{
 
 public class TestLogic {
     public static void main(String[] args) {
-        BlockTest blockTestStr1 = new BlockTest("skills", 3, 3);
-        BlockTest blockTestStr10 = new BlockTest("skills", 10, 20);
-        BlockTest blockTestStr2 = new BlockTest("languages", 60, 100);
-        BlockTest blockTestStr3 = new BlockTest("languages", 8, 25);
-        BlockTest blockTestStr4 = new BlockTest("languages", 4, 25);
-        BlockTest blockTestStr40 = new BlockTest("languages", 4, 20);
-        BlockTest blockTestStr5 = new BlockTest("languages", 60, 200);
+        BlockTest blockTestStr1 = new BlockTest("skills", 1, 1);
+        BlockTest blockTestStr10 = new BlockTest("skills", 1, 11);
+        BlockTest blockTestStr2 = new BlockTest("languages", 1, 13);
+       // BlockTest blockTestStr3 = new BlockTest("languages", 8, 25);
+        //BlockTest blockTestStr4 = new BlockTest("languages", 4, 25);
+        //BlockTest blockTestStr40 = new BlockTest("languages", 4, 20);
+       // BlockTest blockTestStr5 = new BlockTest("languages", 60, 200);
         //BlockTest blockTestStr6 = new BlockTest("languages", 4, 5);
         //BlockTest blockTestStr40 = new BlockTest("languages", 2, 3);
         //BlockTest blockTestStr5 = new BlockTest("languages", 6, 27);
@@ -51,11 +51,11 @@ public class TestLogic {
         Set<BlockTest> blockTestSet = new LinkedHashSet<>();
         blockTestSet.add(blockTestStr1);
         blockTestSet.add(blockTestStr10);
-        blockTestSet.add(blockTestStr2);
-        blockTestSet.add(blockTestStr3);
+      blockTestSet.add(blockTestStr2);
+         /* blockTestSet.add(blockTestStr3);
         blockTestSet.add(blockTestStr4);
         blockTestSet.add(blockTestStr40);
-        blockTestSet.add(blockTestStr5);
+        blockTestSet.add(blockTestStr5);*/
         //blockTestSet.add(blockTestStr6);
 
         System.out.println("SET BLOCK:");

@@ -146,6 +146,8 @@ public class Analyzer {
         Block maxBlock = null;
         for (Block block : blockSet) {
             type = block.getTypeBlock();
+            if (block.getTextBlockSize() <=1)
+                continue;
             if ((type.equals("skills") && block.getPointSkills() > maxPoint)||(type.equals("skills") && block.getPercentSkills() > maxPercent && block.getTextBlockSize() > textSize)) {
                 maxPoint = block.getPointSkills();
                 maxPercent = block.getPercentSkills();
@@ -181,7 +183,7 @@ public class Analyzer {
                 //---------------
                 maxBlock = block;
                 //---------------
-            }else if ((type.equals("objective") && block.getPointSkills() > maxPoint)||(type.equals("objective") &&  block.getPercentObjective() > maxPercent && block.getTextBlockSize() > textSize)) {
+            }else if ((type.equals("objective") && block.getPointObjective() > maxPoint)||(type.equals("objective") &&  block.getPercentObjective() > maxPercent && block.getTextBlockSize() > textSize)) {
                 maxPoint = block.getPointObjective();
                 maxPercent = block.getPercentObjective();
                 textSize = block.getTextBlockSize();

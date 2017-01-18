@@ -1,8 +1,8 @@
-import np.com.mshrestha.dropzonetest.Parser.BoxParser;
-import np.com.mshrestha.dropzonetest.Parser.SearchBoxParser;
-import np.com.mshrestha.dropzonetest.model.CV;
-import np.com.mshrestha.dropzonetest.model.Contact;
-import np.com.mshrestha.dropzonetest.model.UploadedFile;
+import cloud.molddata.parser.cv.parser.BoxParser;
+import cloud.molddata.parser.cv.parser.SearchBoxParser;
+import cloud.molddata.parser.cv.model.CV;
+import cloud.molddata.parser.cv.model.Contact;
+import cloud.molddata.parser.cv.model.UploadedFile;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
