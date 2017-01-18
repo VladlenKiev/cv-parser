@@ -148,8 +148,6 @@ public class Analyzer {
             type = block.getTypeBlock();
             if (block.getTextBlockSize() <=1)
                 continue;
-            if (block.getTextBlockSize() <=1)
-                continue;
             if ((type.equals("skills") && block.getPointSkills() > maxPoint)||(type.equals("skills") && block.getPercentSkills() > maxPercent && block.getTextBlockSize() > textSize)) {
                 maxPoint = block.getPointSkills();
                 maxPercent = block.getPercentSkills();
