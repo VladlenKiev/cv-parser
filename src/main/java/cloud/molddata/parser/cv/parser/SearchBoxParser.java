@@ -25,6 +25,7 @@ import java.util.List;
 public final class SearchBoxParser {
 
     private static List<Contact> contactList=new ArrayList<>();
+    private static final String pathFiiles = "/opt/tomcat/temp/uploaded/";
 
     public static List<Contact> getContactList() {
         List<Contact> contactListTemp = new ArrayList<>();
@@ -107,7 +108,8 @@ public final class SearchBoxParser {
         //ClassLoader classLoader = new SearchBoxParser().getClass().getClassLoader();
         try {
             PDDocument document = null;
-            File file = new File("C:/uploaded-files/"+fName);
+            //File file = new File("C:/uploaded-files/"+fName);
+            File file = new File(pathFiiles+fName);
             //File file = new File("/opt/tomcat/temp/uploaded/"+fName);
             //File file = ResourceUtils.getFile(classLoader.getResource("resources/uploaded/" + fName).getFile());
 
@@ -135,7 +137,8 @@ public final class SearchBoxParser {
         //ClassLoader classLoader = new SearchBoxParser().getClass().getClassLoader();
         try
         {
-            File file = new File("C:/uploaded-files/"+fName);
+            //File file = new File("C:/uploaded-files/"+fName);
+            File file = new File(pathFiiles+fName);
             //File file = new File("/opt/tomcat/temp/uploaded/"+fName);
             //File file = ResourceUtils.getFile(classLoader.getResource("resources/uploaded/"+fName).getFile());
             FileInputStream fis = new FileInputStream(file.getAbsolutePath());

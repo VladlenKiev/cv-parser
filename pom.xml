@@ -109,12 +109,14 @@
 			<version>2.2.4</version>
 		</dependency>
 
-		<!-- Hibernate -->
-		<!--<dependency>
+		<!-- MySQL -->
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-version}</version>
-		</dependency>-->
+		</dependency>
+
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -136,13 +138,6 @@
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
 			<version>${apache-connection-pooling-version}</version>
-		</dependency>
-
-		<!-- MySQL -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-version}</version>
 		</dependency>
 
 		<!-- Spring Security -->

@@ -1,30 +1,8 @@
-import cloud.molddata.parser.cv.parser.BoxParser;
 import cloud.molddata.parser.cv.parser.SearchBoxParser;
-import cloud.molddata.parser.cv.model.CV;
-import cloud.molddata.parser.cv.model.Contact;
-import cloud.molddata.parser.cv.model.UploadedFile;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.junit.Test;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
-/**
- * The user enters text into a search box. This class is used
- * to parse that text into specific search terms (or tokens).
- * It eliminates common words, and allows for the quoting of text, using
- * double quotes.
- * JDK 7+.
- */
+
 public final class SearchBoxParserTest {
 
     /*private static List<Contact> contactList=new ArrayList<>();

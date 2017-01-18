@@ -44,10 +44,8 @@ public class FileUploadController {
 
   @RequestMapping(value = {"/fileUploader"})
   public String fileUploader(HttpServletRequest request) {
-    //System.out.println("/fileUploader being called by");
     String sessionID = request.getSession().getId();
     uploadService.createUser(sessionID);
-    //System.out.println("/fileUploader sesID from ="+sessionID);
     return "/fileUploader";
   }
 
@@ -100,13 +98,11 @@ public class FileUploadController {
   public @ResponseBody String parse(HttpServletRequest request,
                                     HttpServletResponse response) throws IOException {
     String filesParsed = "";
-    //System.out.println("PARSED "+filesParsed);
     //response.setHeader("HeadSessionID", request.getSession().getId());
     for (int i =0; i<getActiveFilesInSession().size();i++){
       filesParsed = filesParsed + "   - "+getActiveFilesInSession().get(i).getName()+
               uploadService.parseStatus(getActiveFilesInSession().get(i))+"\n";
     }
-    //System.out.println("size of CV: " + getActiveFilesInSession().size());
     System.out.println("SEND command to SAVE CV");
     //saveCVToDatabase(getActiveFilesInSession()); //load CV to DB!!!!!!!!!!!!
     uploadService.saveParsedCV(getActiveFilesInSession());
@@ -122,11 +118,7 @@ public class FileUploadController {
   public @ResponseBody String contact(HttpServletRequest request,
                                       HttpServletResponse response,
                                       Map<String, Object> map) throws IOException {
-    //System.out.println("I was being activated");
     String ContactID = request.getParameter(("contID")).toString();
-    //System.out.println("get CONTACT ID"+ContactID.toString());
-    //String nameCont = uploadService.getContactForThis(ContactID);//--work for toString
-    //map.put("contList", uploadService.listCont(ContactID));
     Contact cont = uploadService.contInfo(ContactID);
     String nameCont = cont.getPhone(); //+"   ID="+cont.getId()
     response.setHeader("HeadSessionFullName", cont.getFullName());
@@ -139,11 +131,8 @@ public class FileUploadController {
   @RequestMapping(value = {"/list"})
   public String listBooks(Map<String, Object> map, HttpServletRequest request) {
     String sessionID = request.getSession().getId();
-    //System.out.println("sesID from /LIST="+sessionID);
-
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String nameAuth = auth.getName();
-    //System.out.println("MODELauth_NAME AUTH from /LIST=" + nameAuth);
 
     map.put("fileList", uploadService.listFiles());
     map.put("userList", uploadService.listUsers(nameAuth, sessionID));
@@ -201,27 +190,6 @@ public class FileUploadController {
 
     String outputFileName = getOutputFilename(multipartFile);
     FileCopyUtils.copy(multipartFile.getBytes(), new FileOutputStream(outputFileName));
-
-    /*ClassLoader classLoader = new FileUploadController().getClass().getClassLoader();
-    URL[] path = ((URLClassLoader) (Thread.currentThread().getContextClassLoader())).getURLs();
-    System.out.println("pa="+path[0].toString().substring(6));
-    //File file = ResourceUtils.getFile(classLoader.getResource("resources/uploaded/" + multipartFile.getOriginalFilename()).getFile());
-    //File file = ResourceUtils.getFile(classLoader.getResource("resources/uploaded/"+multipartFile.getOriginalFilename()).getFile());
-
-    //String path = classLoader.getParent().toString();
-    //System.out.printf("pa??"+path);
-    //String path = ResourceUtils.getURL(String.valueOf(classLoader.getResource("resources/uploaded/" + multipartFile.getOriginalFilename())));
-    //getFile(classLoader.getResource("resources/uploaded/" + multipartFile.getOriginalFilename())).getAbsolutePath();
-    //System.out.printf("f"+file.getAbsolutePath());
-    //String filePath = file.getAbsolutePath();
-    //System.out.printf("PATH1="+filePath);
-
-
-    //String outputFileName = getOutputFilename(multipartFile);
-    String outputFileName = path[0].toString().substring(6)+getOutputFilename(multipartFile);
-    System.out.println("PATH2=" + outputFileName);
-
-    FileCopyUtils.copy(multipartFile.getBytes(), new FileOutputStream(outputFileName));*/
   }
 
   private UploadedFile saveFileToDatabase(UploadedFile uploadedFile) {
@@ -254,9 +222,9 @@ public class FileUploadController {
   }
 
   private String getDestinationLocation() {
-    return "C:/uploaded-files/";
+    //return "C:/uploaded-files/";
     //return "resources/uploaded/";
-    //return "/opt/tomcat/temp/uploaded/";
+    return "/opt/tomcat/temp/uploaded/";
   }
 
   //show info in dialog after btn-parsed

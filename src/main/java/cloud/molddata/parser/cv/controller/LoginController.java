@@ -31,9 +31,6 @@ public class LoginController {
 	@Autowired
 	private FileUploadService uploadService;
 
-	/*@Autowired
-	private UserDetailsService userDetailsService;*/
-
 	/*@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
@@ -45,20 +42,14 @@ public class LoginController {
 
 	}*/
 	@RequestMapping(value = {"/"})
-	public String home(HttpServletRequest request,@ModelAttribute("userForm") UserSecurity userForm,
-					   Model model) {
+	public String home(HttpServletRequest request,@ModelAttribute("userForm") UserSecurity userForm) {
 		String sessionID = request.getSession().getId();
-		//uploadService.createUser(nameSession);
-		//System.out.println("sesID from /="+sessionID);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nameAuth = auth.getName();
-		//System.out.println("MODELauth_NAME AUTH=" + nameAuth);
 
 		if (!"anonymousUser".equals(nameAuth))
 			userService.authorization(nameAuth, sessionID);
-
-		//System.out.println("equela?="+"anonymousUser".equals(nameAuth));
 
 		return "redirect:/fileUploader";
 	}

@@ -11,7 +11,7 @@ public class SeacrherRegByPh {
     public String[] searcherCountryCode(String requestPhone){
         String[] result = new String[3];
         String[] resultNone = new String[3];
-        String tempCountryCode = null;
+        String tempCountryCode;
         requestPhone = requestPhone.replaceAll("\\s*[\\(*|\\)*|\\s*]+\\s*", "");
         String path = findFileCountryCode(requestPhone);
         JSONCC[] jsoNmy = parseCountryCode(path);
@@ -89,7 +89,7 @@ public class SeacrherRegByPh {
             BufferedReader br = new BufferedReader(fr);
             char[] buf = new char[1000000];
 
-            int r = 0;
+            int r;
             do {
                 if ((r = br.read(buf)) > 0)
                     sb.append(new String(buf, 0, r));

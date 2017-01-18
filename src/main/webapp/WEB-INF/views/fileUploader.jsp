@@ -106,6 +106,10 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</div>
 		</div>
+			<div class="poweredBy">
+				&copf; Powered by V.Mankivskiy & A.Tsyganok
+			</div>
+
 
 
 	<script type="text/javascript"
