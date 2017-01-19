@@ -2,7 +2,6 @@ package cloud.molddata.parser.cv.parser;
 
 
 import org.springframework.util.ResourceUtils;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -11,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordsContent {
+    private static String filePath= "/opt/tomcat/temp/dictionary/";
     private static final Set<String> fCOMMON_WORDS_EXCLUDE = new LinkedHashSet<>();
 
     /**Very common words to be excluded from searches.*/
@@ -685,12 +685,15 @@ public class WordsContent {
     }
 
     private static void writeToFile(String srcFile,ArrayList<String> words) {
-        String path = "resources/dictionary/" + srcFile;
-        ClassLoader classLoader = new WordsContent().getClass().getClassLoader();
+        //String path = "resources/dictionary/" + srcFile;
+        //ClassLoader classLoader = new WordsContent().getClass().getClassLoader();
+        //File file = null;
+        String path = filePath + srcFile;
         File file = null;
         BufferedWriter bw = null;
         try {
-            file = ResourceUtils.getFile(classLoader.getResource(path).getFile());
+            file = new File(path);
+            //file = ResourceUtils.getFile(classLoader.getResource(path).getFile());
             bw = new BufferedWriter(new FileWriter(file, true));
             for(String word:words) {
                 //System.out.println("write a word " + word + " to file " + file.getAbsolutePath());
@@ -712,12 +715,15 @@ public class WordsContent {
 
     private static ArrayList readFromFile(String srcFile) {
         ArrayList<String> words = new ArrayList<String>();
-        String path = "resources/dictionary/" + srcFile;
-        ClassLoader classLoader = new WordsContent().getClass().getClassLoader();
+        //String path = "resources/dictionary/" + srcFile;
+        //ClassLoader classLoader = new WordsContent().getClass().getClassLoader();
+        //File file = null;
+        String path = filePath + srcFile;
         File file = null;
         BufferedReader br = null;
         try {
-            file = ResourceUtils.getFile(classLoader.getResource(path).getFile());
+            file = new File(path);
+            //file = ResourceUtils.getFile(classLoader.getResource(path).getFile());
             //System.out.println(file.getAbsolutePath());
             br = new BufferedReader(new FileReader(file));
             String line = br.readLine();

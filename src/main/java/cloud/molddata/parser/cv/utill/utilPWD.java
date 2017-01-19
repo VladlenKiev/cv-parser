@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 public class utilPWD {
     public static void main(String[] args) {
-        String p0="1";
+        String p0="admin";
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         System.out.println(encoder.encode(p0));
 

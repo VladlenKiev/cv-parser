@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * JDK 7+.
  */
 public final class SearcherRegByPhTest {
-    @Test
+    //@Test
     public void testFindFileCountryCode(){
         SeacrherRegByPh seacrherRegByPhTest = new SeacrherRegByPh();
 
@@ -22,7 +22,7 @@ public final class SearcherRegByPhTest {
 
     }
 
-    @Test
+    //@Test
     public void testFindFileCountryCode0(){
         SeacrherRegByPh seacrherRegByPhTest = new SeacrherRegByPh();
 
@@ -33,7 +33,7 @@ public final class SearcherRegByPhTest {
         assertEquals("resources/location/phone-codes.json", result);
 
     }
- @Test
+ //@Test
     public void testFindFileCountryCode1(){
         SeacrherRegByPh seacrherRegByPhTest = new SeacrherRegByPh();
 

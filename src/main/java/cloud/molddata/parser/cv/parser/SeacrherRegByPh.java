@@ -41,17 +41,20 @@ public class SeacrherRegByPh {
         }
         switch (requestPhone.substring(1, 2)){
             case "1":
-                path = "resources/location/phones-us.json";
+                path = "/opt/tomcat/temp/location/phones-us.json";
+                //path = "resources/location/phones-us.json";
                 //path = "\\web-resources\\resources\\location\\phones-us.json";
                 break;
             case "7":
-                path = "resources/location/phones-ru.json";
+                path = "/opt/tomcat/temp/location/phones-ru.json";
+                //path = "resources/location/phones-ru.json";
                 //path = "src\\main\\resources\\location\\phones-ru.json";
                 break;
             default:
                 //path = "C:\\Users\\admin\\IdeaProjects\\springmvc-dropzonejs-app-jpa-front_1\\target\\springmvc-dropzonejs-1.0.0-BUILD-SNAPSHOT\\resources\\location\\phone-codes.json";
                 //path = "\\src\\main\\resources\\location\\phone-codes.json";
-                path = "resources/location/phone-codes.json";
+                path = "/opt/tomcat/temp/location/phone-codes.json";
+                //path = "resources/location/phone-codes.json";
                 break;
         }
         return path;
@@ -74,14 +77,14 @@ public class SeacrherRegByPh {
     }
 
     private static String RequestToCodesList(String path) throws IOException {
-        ClassLoader classLoader = new SeacrherRegByPh().getClass().getClassLoader();
-        File file = ResourceUtils.getFile(classLoader.getResource(path).getFile());
+        //ClassLoader classLoader = new SeacrherRegByPh().getClass().getClassLoader();
+        //File file = ResourceUtils.getFile(classLoader.getResource(path).getFile());
         //File file = ResourceUtils.getFile(path);
         //File file = new File(path);
         //System.out.println("to method "+path);
         //System.out.println("after method "+file.getCanonicalPath());
         //System.out.println("classpath:web-inf/location/phone.codes.json");
-        System.out.println();
+        File file = new File(path);
         FileReader fr = new FileReader(file);
         StringBuilder sb = new StringBuilder();
 

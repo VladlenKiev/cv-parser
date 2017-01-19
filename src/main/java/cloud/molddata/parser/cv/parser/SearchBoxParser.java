@@ -25,7 +25,7 @@ import java.util.List;
 public final class SearchBoxParser {
 
     private static List<Contact> contactList=new ArrayList<>();
-    private static final String pathFiiles = "/opt/tomcat/temp/uploaded/";
+    private static final String pathFiiles = "/opt/tomcat/temp/uploaded-files/";
 
     public static List<Contact> getContactList() {
         List<Contact> contactListTemp = new ArrayList<>();
