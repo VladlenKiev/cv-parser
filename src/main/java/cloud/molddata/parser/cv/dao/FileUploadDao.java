@@ -8,17 +8,17 @@ public interface FileUploadDao {
 
   List<UploadedFile> listFiles();
 
-  List<Users> listUsers(String nameAuth, String sessionID);
+  /*List<Users> listUsers(String nameAuth, String sessionID);
 
   List<Users> listUsersAll();
 
-  List<UserSecurity> listUsersAuth();
+  List<UserSecurity> listUsersAuth();*/
 
   UploadedFile getFile(Long id);
 
   UploadedFile saveFile(UploadedFile uploadedFile);
 
-  Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
+  /*Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
 
   void createUser(String sessionID);
 
@@ -31,6 +31,6 @@ public interface FileUploadDao {
   List<CV> listCVes();
 
   //-----------------------
-  String parseStatus(UploadedFile activeFileInSession);
+  String parseStatus(UploadedFile activeFileInSession);*/
 
 }

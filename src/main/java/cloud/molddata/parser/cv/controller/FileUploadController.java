@@ -2,7 +2,9 @@ package cloud.molddata.parser.cv.controller;
 
 import cloud.molddata.parser.cv.model.Contact;
 import cloud.molddata.parser.cv.model.UploadedFile;
+import cloud.molddata.parser.cv.service.CVParserService;
 import cloud.molddata.parser.cv.service.FileUploadService;
+import cloud.molddata.parser.cv.service.UserUploaderService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -27,25 +30,33 @@ import java.util.Map;
 @Controller
 public class FileUploadController {
 
-  private static List<UploadedFile> actFiles;
+  private List<UploadedFile> activeFilesInSession;
+  @PostConstruct
+  void initActiveFileSession(){
+    List<UploadedFile> activeFilesInSession = new ArrayList<>();
+  }
 
-  private static List<UploadedFile> activeFilesInSession;
-
-  public static List<UploadedFile> getActiveFilesInSession() {
+  public List<UploadedFile> getActiveFilesInSession() {
     return activeFilesInSession;
   }
 
-  public static void setActiveFilesInSession(List<UploadedFile> activeFilesInSession) {
-    FileUploadController.activeFilesInSession = activeFilesInSession;
+  public void setActiveFilesInSession(List<UploadedFile> activeFilesInSession) {
+    this.activeFilesInSession = activeFilesInSession;
   }
 
   @Autowired
-  private FileUploadService uploadService;
+  private FileUploadService fileUploadService;
+
+  @Autowired
+  private UserUploaderService userUploaderService;
+
+  @Autowired
+  private CVParserService cvParserService;
 
   @RequestMapping(value = {"/fileUploader"})
   public String fileUploader(HttpServletRequest request) {
     String sessionID = request.getSession().getId();
-    uploadService.createUser(sessionID);
+    userUploaderService.createUser(sessionID);
     return "/fileUploader";
   }
 
@@ -53,7 +64,7 @@ public class FileUploadController {
   public ModelAndView defaultPage(HttpServletRequest request) {
 
     String nameSession = request.getSession().getId();
-    uploadService.createUser(nameSession);
+    fileUploadService.createUser(nameSession);
     ModelAndView model = new ModelAndView();
     model.addObject("title", "Spring Security + Hibernate Example");
     model.addObject("message", "This is default page!");
@@ -101,11 +112,11 @@ public class FileUploadController {
     //response.setHeader("HeadSessionID", request.getSession().getId());
     for (int i =0; i<getActiveFilesInSession().size();i++){
       filesParsed = filesParsed + "   - "+getActiveFilesInSession().get(i).getName()+
-              uploadService.parseStatus(getActiveFilesInSession().get(i))+"\n";
+              cvParserService.parseStatus(getActiveFilesInSession().get(i))+"\n";
     }
     System.out.println("SEND command to SAVE CV");
     //saveCVToDatabase(getActiveFilesInSession()); //load CV to DB!!!!!!!!!!!!
-    uploadService.saveParsedCV(getActiveFilesInSession());
+    cvParserService.saveParsedCV(getActiveFilesInSession());
     //-------------- clean List<UploadedFile> activeFilesInSession
     setActiveFilesInSession(new ArrayList<UploadedFile>());
     //----------------------------------------------------
@@ -119,7 +130,7 @@ public class FileUploadController {
                                       HttpServletResponse response,
                                       Map<String, Object> map) throws IOException {
     String ContactID = request.getParameter(("contID")).toString();
-    Contact cont = uploadService.contInfo(ContactID);
+    Contact cont = cvParserService.contInfo(ContactID);
     String nameCont = cont.getPhone(); //+"   ID="+cont.getId()
     response.setHeader("HeadSessionFullName", cont.getFullName());
     response.setHeader("HeadSessionRegion", cont.getLocation());
@@ -134,8 +145,8 @@ public class FileUploadController {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String nameAuth = auth.getName();
 
-    map.put("fileList", uploadService.listFiles());
-    map.put("userList", uploadService.listUsers(nameAuth, sessionID));
+    map.put("fileList", fileUploadService.listFiles());
+    map.put("userList", userUploaderService.listUsers(nameAuth, sessionID));
     //System.out.println(map.get("userList").toString());
     return "/listFiles";
   }
@@ -146,8 +157,8 @@ public class FileUploadController {
   public String listCVes(Map<String, Object> map, HttpServletRequest request) {
     String sessionID = request.getSession().getId();
     Authentication nameAuth = SecurityContextHolder.getContext().getAuthentication();
-    map.put("cvList", uploadService.listCVes());
-    map.put("userList", uploadService.listUsers(nameAuth.getName(), sessionID));
+    map.put("cvList", cvParserService.listCVes());
+    map.put("userList", userUploaderService.listUsers(nameAuth.getName(), sessionID));
     return "/listCVes";
   }
 
@@ -156,7 +167,7 @@ public class FileUploadController {
   @RequestMapping(value = "/get/{fileId}", method = RequestMethod.GET)
   public void getFile(HttpServletResponse response, @PathVariable Long fileId) {
 
-    UploadedFile dataFile = uploadService.getFile(fileId);
+    UploadedFile dataFile = fileUploadService.getFile(fileId);
 
     File file = new File(dataFile.getLocation(), dataFile.getName());
 
@@ -194,12 +205,12 @@ public class FileUploadController {
 
   private UploadedFile saveFileToDatabase(UploadedFile uploadedFile) {
 
-    return uploadService.saveFile(uploadedFile);
+    return fileUploadService.saveFile(uploadedFile);
   }
 
   private Contact saveCVToDatabase(List<UploadedFile> uploadedFileINSession) {
 
-    return uploadService.saveParsedCVes(uploadedFileINSession);
+    return cvParserService.saveParsedCVes(uploadedFileINSession);
   }
 
   private String getOutputFilename(MultipartFile multipartFile) {

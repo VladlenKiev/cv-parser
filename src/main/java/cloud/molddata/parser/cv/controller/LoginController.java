@@ -1,8 +1,10 @@
 package cloud.molddata.parser.cv.controller;
 
 import cloud.molddata.parser.cv.model.UserSecurity;
+import cloud.molddata.parser.cv.service.CVParserService;
 import cloud.molddata.parser.cv.service.FileUploadService;
 import cloud.molddata.parser.cv.service.UserService;
+import cloud.molddata.parser.cv.service.UserUploaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -29,7 +31,11 @@ public class LoginController {
 	private UserService userService;
 
 	@Autowired
-	private FileUploadService uploadService;
+	private FileUploadService fileUploadService;
+	@Autowired
+	private UserUploaderService userUploaderService;
+	@Autowired
+	private CVParserService cvParserService;
 
 	/*@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
@@ -137,10 +143,10 @@ public class LoginController {
 		model.addAttribute("userName", userName);
 		model.addAttribute("title", "You are on personal page for ONE user!");
 		model.addAttribute("message", "This page is for ROLE_ADMIN only!");
-		/*map.put("fileList", uploadService.listFiles());*/
-		map.put("userList", uploadService.listUsers(userName, "000"));
-		map.put("cvList", uploadService.listCVes());
-		map.put("userListAuth", uploadService.listUsersAuth());
+		/*map.put("fileList", fileUploadService.listFiles());*/
+		map.put("userList", userUploaderService.listUsers(userName, "000"));
+		map.put("cvList", cvParserService.listCVes());
+		map.put("userListAuth", userUploaderService.listUsersAuth());
 
 		return "dba";
 	}
@@ -157,9 +163,9 @@ public class LoginController {
 		String nameAuth = auth.getName();
 		System.out.println("MODELauth_NAME AUTH from /LIST=" + nameAuth);
 
-		map.put("fileList", uploadService.listFiles());
-		map.put("userList", uploadService.listUsersAll());
-		map.put("userListAuth", uploadService.listUsersAuth());
+		map.put("fileList", fileUploadService.listFiles());
+		map.put("userList", userUploaderService.listUsersAll());
+		map.put("userListAuth", userUploaderService.listUsersAuth());
 		//System.out.println(map.get("userList").toString());
 
 		return model;

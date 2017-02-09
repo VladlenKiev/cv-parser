@@ -8,17 +8,17 @@ public interface FileUploadService {
 
   List<UploadedFile> listFiles();
 
-  List<Users> listUsers(String nameAuth, String sessionID);
+  /*List<Users> listUsers(String nameAuth, String sessionID);
 
   List<Users> listUsersAll();
 
-  List<UserSecurity> listUsersAuth();
+  List<UserSecurity> listUsersAuth();*/
 
   UploadedFile getFile(Long id);
 
   UploadedFile saveFile(UploadedFile uploadedFile);
 
-  Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
+  /*Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
 
   void createUser(String sessionID);
 
@@ -30,6 +30,6 @@ public interface FileUploadService {
 
   Contact contInfo(String id_cont);
   //----------------------------------------
-  String parseStatus(UploadedFile activeFileInSession);
+  String parseStatus(UploadedFile activeFileInSession);*/
 
 }
