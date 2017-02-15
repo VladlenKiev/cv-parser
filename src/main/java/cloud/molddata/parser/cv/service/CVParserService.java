@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface CVParserService {
 
-  Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
+    //Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
 
-    void saveParsedCV(List<UploadedFile> activeFilesInSession);
+    void saveListParsedCV(List<UploadedFile> activeFilesInSession);
 
-  String getContactForThis(String id_cont);
+    //String getContactForThis(String id_cont);
 
-  List<CV> listCVes();
+    List<CV> getListCV();
 
-  Contact contInfo(String id_cont);
-  //----------------------------------------
-  String parseStatus(UploadedFile activeFileInSession);
+    Contact getContactInfo(String id_cont);
+
+    String getParseStatus(UploadedFile activeFileInSession);
 
 }

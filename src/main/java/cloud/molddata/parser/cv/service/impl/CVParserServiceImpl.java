@@ -25,39 +25,37 @@ public class CVParserServiceImpl implements CVParserService {
 
       @Override
     @Transactional
-    public void saveParsedCV(List<UploadedFile> activeFilesInSession){
-        dao.saveParsedCV(activeFilesInSession);
+    public void saveListParsedCV(List<UploadedFile> activeFilesInSession){
+        dao.saveListParsedCV(activeFilesInSession);
     }
-    @Override
+    /*@Override
     @Transactional
     public Contact saveParsedCVes(List<UploadedFile> activeFilesInSession){
         return dao.saveParsedCVes(activeFilesInSession);
-    }
+    }*/
 
     @Override
     @Transactional
-    public String parseStatus(UploadedFile activeFileInSession){
-        return dao.parseStatus(activeFileInSession);
+    public String getParseStatus(UploadedFile activeFileInSession){
+        return dao.getParseStatus(activeFileInSession);
     }
 
-    @Override
+    /*@Override
     @Transactional
     public String getContactForThis(String id_cont){
         return dao.getContactForThis(id_cont);
     }
-
+*/
     @Override
     @Transactional(readOnly = true)
-    public List<CV> listCVes() {
-
-        return dao.listCVes();
+    public List<CV> getListCV() {
+        return dao.getListCV();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Contact contInfo(String id_cont) {
-
-        return dao.contInfo(id_cont);
+    public Contact getContactInfo(String id_cont) {
+        return dao.getContactInfo(id_cont);
     }
 
 }

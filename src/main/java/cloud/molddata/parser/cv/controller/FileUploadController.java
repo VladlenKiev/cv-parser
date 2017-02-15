@@ -56,7 +56,7 @@ public class FileUploadController {
   @RequestMapping(value = {"/fileUploader"})
   public String fileUploader(HttpServletRequest request) {
     String sessionID = request.getSession().getId();
-    userUploaderService.createUser(sessionID);
+    userUploaderService.createAnonymousUser(sessionID);
     return "/fileUploader";
   }
 
@@ -64,7 +64,7 @@ public class FileUploadController {
   public ModelAndView defaultPage(HttpServletRequest request) {
 
     String nameSession = request.getSession().getId();
-    fileUploadService.createUser(nameSession);
+    fileUploadService.createAnonymousUser(nameSession);
     ModelAndView model = new ModelAndView();
     model.addObject("title", "Spring Security + Hibernate Example");
     model.addObject("message", "This is default page!");
@@ -112,11 +112,11 @@ public class FileUploadController {
     //response.setHeader("HeadSessionID", request.getSession().getId());
     for (int i =0; i<getActiveFilesInSession().size();i++){
       filesParsed = filesParsed + "   - "+getActiveFilesInSession().get(i).getName()+
-              cvParserService.parseStatus(getActiveFilesInSession().get(i))+"\n";
+              cvParserService.getParseStatus(getActiveFilesInSession().get(i))+"\n";
     }
     System.out.println("SEND command to SAVE CV");
     //saveCVToDatabase(getActiveFilesInSession()); //load CV to DB!!!!!!!!!!!!
-    cvParserService.saveParsedCV(getActiveFilesInSession());
+    cvParserService.saveListParsedCV(getActiveFilesInSession());
     //-------------- clean List<UploadedFile> activeFilesInSession
     setActiveFilesInSession(new ArrayList<UploadedFile>());
     //----------------------------------------------------
@@ -130,7 +130,7 @@ public class FileUploadController {
                                       HttpServletResponse response,
                                       Map<String, Object> map) throws IOException {
     String ContactID = request.getParameter(("contID")).toString();
-    Contact cont = cvParserService.contInfo(ContactID);
+    Contact cont = cvParserService.getContactInfo(ContactID);
     String nameCont = cont.getPhone(); //+"   ID="+cont.getId()
     response.setHeader("HeadSessionFullName", cont.getFullName());
     response.setHeader("HeadSessionRegion", cont.getLocation());
@@ -145,8 +145,8 @@ public class FileUploadController {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String nameAuth = auth.getName();
 
-    map.put("fileList", fileUploadService.listFiles());
-    map.put("userList", userUploaderService.listUsers(nameAuth, sessionID));
+    map.put("fileList", fileUploadService.getListFiles());
+    map.put("userList", userUploaderService.getListUsersByName(nameAuth, sessionID));
     //System.out.println(map.get("userList").toString());
     return "/listFiles";
   }
@@ -157,8 +157,8 @@ public class FileUploadController {
   public String listCVes(Map<String, Object> map, HttpServletRequest request) {
     String sessionID = request.getSession().getId();
     Authentication nameAuth = SecurityContextHolder.getContext().getAuthentication();
-    map.put("cvList", cvParserService.listCVes());
-    map.put("userList", userUploaderService.listUsers(nameAuth.getName(), sessionID));
+    map.put("cvList", cvParserService.getListCV());
+    map.put("userList", userUploaderService.getListUsersByName(nameAuth.getName(), sessionID));
     return "/listCVes";
   }
 
@@ -208,10 +208,10 @@ public class FileUploadController {
     return fileUploadService.saveFile(uploadedFile);
   }
 
-  private Contact saveCVToDatabase(List<UploadedFile> uploadedFileINSession) {
+ /* private Contact saveCVToDatabase(List<UploadedFile> uploadedFileINSession) {
 
     return cvParserService.saveParsedCVes(uploadedFileINSession);
-  }
+  }*/
 
   private String getOutputFilename(MultipartFile multipartFile) {
 

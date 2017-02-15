@@ -144,9 +144,9 @@ public class LoginController {
 		model.addAttribute("title", "You are on personal page for ONE user!");
 		model.addAttribute("message", "This page is for ROLE_ADMIN only!");
 		/*map.put("fileList", fileUploadService.listFiles());*/
-		map.put("userList", userUploaderService.listUsers(userName, "000"));
-		map.put("cvList", cvParserService.listCVes());
-		map.put("userListAuth", userUploaderService.listUsersAuth());
+		map.put("userList", userUploaderService.getListUsersByName(userName, "000"));
+		map.put("cvList", cvParserService.getListCV());
+		map.put("userListAuth", userUploaderService.getListUsersAuth());
 
 		return "dba";
 	}
@@ -163,9 +163,9 @@ public class LoginController {
 		String nameAuth = auth.getName();
 		System.out.println("MODELauth_NAME AUTH from /LIST=" + nameAuth);
 
-		map.put("fileList", fileUploadService.listFiles());
-		map.put("userList", userUploaderService.listUsersAll());
-		map.put("userListAuth", userUploaderService.listUsersAuth());
+		map.put("fileList", fileUploadService.getListFiles());
+		map.put("userList", userUploaderService.getListUsersAll());
+		map.put("userListAuth", userUploaderService.getListUsersAuth());
 		//System.out.println(map.get("userList").toString());
 
 		return model;

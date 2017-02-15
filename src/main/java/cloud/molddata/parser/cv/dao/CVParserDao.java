@@ -6,17 +6,15 @@ import java.util.List;
 
 public interface CVParserDao {
 
-  Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
+    //Contact saveParsedCVes(List<UploadedFile> activeFilesInSession);
 
-   void saveParsedCV(List<UploadedFile> activeFilesInSession);
+    void saveListParsedCV(List<UploadedFile> activeFilesInSession);
 
-  String getContactForThis(String id_cont);
+    //String getContactForThis(String id_cont);
 
-  Contact contInfo(String id_cont);
+    List<CV> getListCV();
 
-  List<CV> listCVes();
+    Contact getContactInfo(String id_cont);
 
-  //-----------------------
-  String parseStatus(UploadedFile activeFileInSession);
-
+    String getParseStatus(UploadedFile activeFileInSession);
 }

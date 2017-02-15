@@ -13,43 +13,35 @@ import java.util.List;
 @Service
 public class UserUploaderServiceImpl implements UserUploaderService {
 
-  //private SessionFactory sessionFactory;
+    //private SessionFactory sessionFactory;
 
-  @Autowired
-  private UserUploaderDao dao;
-
- /* public FileUploadServiceImpl(){}
-  public FileUploadServiceImpl(SessionFactory sessionFactory) {
-    this.sessionFactory = sessionFactory;
-
-  }*/
+    @Autowired
+    private UserUploaderDao dao;
 
 
     @Override
     @Transactional(readOnly = true)
-    public List<Users> listUsers(String nameAuth, String sessionID) {
-
-        return dao.listUsers(nameAuth, sessionID);
+    public List<Users> getListUsersByName(String nameAuth, String sessionID) {
+        return dao.getListUsersByName(nameAuth, sessionID);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Users> listUsersAll() {
-
-        return dao.listUsersAll();
+    public List<Users> getListUsersAll() {
+        return dao.getListUsersAll();
     }
-    @Override
-        @Transactional(readOnly = true)
-        public List<UserSecurity> listUsersAuth() {
 
-            return dao.listUsersAuth();
-        }
+    @Override
+    @Transactional(readOnly = true)
+    public List<UserSecurity> getListUsersAuth() {
+        return dao.getListUsersAuth();
+    }
 
 
     @Override
     @Transactional
-    public void createUser(String sessionID) {
-        dao.createUser(sessionID);
+    public void createAnonymousUser(String sessionID) {
+        dao.createAnonymousUser(sessionID);
     }
 
 }

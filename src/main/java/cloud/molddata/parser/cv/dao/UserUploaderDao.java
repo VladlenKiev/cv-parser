@@ -8,12 +8,12 @@ import java.util.List;
 public interface UserUploaderDao {
 
 
-  List<Users> listUsers(String nameAuth, String sessionID);
+  List<Users> getListUsersByName(String nameAuth, String sessionID);
 
-  List<Users> listUsersAll();
+  List<Users> getListUsersAll();
 
-  List<UserSecurity> listUsersAuth();
+  List<UserSecurity> getListUsersAuth();
 
-  void createUser(String sessionID);
+  void createAnonymousUser(String sessionID);
 
 }
